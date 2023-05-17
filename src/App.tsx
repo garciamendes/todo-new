@@ -10,6 +10,10 @@ import { EmptyContainer } from './components/empty-container'
 export const App = () => {
   const [listTasks, setListTasks] = useState([])
 
+  const handleAddTask = () => {
+    setListTasks([])
+  }
+
   return (
     <div className='container'>
       <header>
@@ -21,7 +25,8 @@ export const App = () => {
           <input
             type='text'
             placeholder='Adicione uma nova tarefa'/>
-          <button>
+          <button
+            onClick={handleAddTask}>
             Criar
             <PlusCircle size={20} />
           </button>
