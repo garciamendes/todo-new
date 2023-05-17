@@ -1,0 +1,22 @@
+:root {
+  --black: #0D0D0D;
+  --black-light: #262626;
+  --white: #F2F2F2;
+  --violet: #696BFE;
+  --yellow: #DEC74E;
+  --gray: #808080;
+  --background: #1A1A1A;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+html, body, #root {
+  font-family: 'Inter', sans-serif;
+  height: 100%;
+  background-color: var(--background);
+}
