@@ -18,8 +18,13 @@ const App = () => {
   const { addTodo, todos, totalTaskChecked } = useContext(TodoContext)
 
   const handleAddTask = () => {
-    addTodo(task)
-    setTask('')
+
+    if (task) {
+      addTodo(task)
+      setTask('')
+    } else {
+      alert('Campo obrigatório')
+    }
   }
 
   return (
