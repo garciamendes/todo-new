@@ -1,5 +1,5 @@
 // React
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, KeyboardEvent, useRef } from 'react'
 
 // Third party
 import { PlusCircle } from '@phosphor-icons/react'
@@ -16,14 +16,21 @@ const App = () => {
 
   // Hook
   const { addTodo, todos, totalTaskChecked } = useContext(TodoContext)
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const handleAddTask = () => {
-
-    if (task) {
+    if (task.trim() !== '') {
       addTodo(task)
       setTask('')
     } else {
       alert('Campo obrigatório')
+    }
+  }
+
+  const handlePressEnter = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      event.preventDefault()
+      handleAddTask()
     }
   }
 
@@ -38,6 +45,8 @@ const App = () => {
           <input
             type='text'
             value={task}
+            ref={inputRef}
+            onKeyDown={handlePressEnter}
             onChange={(e) => setTask(e.target.value)}
             placeholder='Adicione uma nova tarefa' />
           <button

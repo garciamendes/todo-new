@@ -24,15 +24,13 @@ const TodoProvider = ({ children }: { children: React.ReactNode }) => {
   function addTodo(task: string){
     const newTodo = { 'id': uuid(), 'task': task, 'isChecked': false }
 
-    setTodos([...todos, newTodo])
+    setTodos([newTodo, ...todos])
   }
 
   function removeTodo(id: string) {
     const updatedTodos = todos.filter((todo: ITask) => todo.id !== id)
     setTodos(updatedTodos)
   }
-
-
 
   function setCheck(id: string) {
     setTodos(prevTodos => {
