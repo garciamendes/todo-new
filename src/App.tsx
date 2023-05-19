@@ -1,17 +1,25 @@
+// React
+import React, { useContext, useState } from 'react'
+
 // Third party
 import { PlusCircle } from '@phosphor-icons/react'
 
 // Local
-import LogoImg from './static/img/logo.svg'
-import './static/styles/app.css'
-import { useState } from 'react'
-import { EmptyContainer } from './components/empty-container'
+import './assets/styles/app.css'
+import LogoImg from './assets/img/logo.svg'
+import { Task } from './components/task'
+import { TodoContext, TodoProvider } from './context/taskTodo'
 
-export const App = () => {
-  const [listTasks, setListTasks] = useState([])
+const App = () => {
+  // State
+  const [task, setTask] = useState('')
+
+  // Hook
+  const { addTodo, todos, totalTaskChecked } = useContext(TodoContext)
 
   const handleAddTask = () => {
-    setListTasks([])
+    addTodo(task)
+    setTask('')
   }
 
   return (
@@ -24,7 +32,9 @@ export const App = () => {
         <div className='content-add-task'>
           <input
             type='text'
-            placeholder='Adicione uma nova tarefa'/>
+            value={task}
+            onChange={(e) => setTask(e.target.value)}
+            placeholder='Adicione uma nova tarefa' />
           <button
             onClick={handleAddTask}>
             Criar
@@ -34,16 +44,21 @@ export const App = () => {
 
         <div className='content-info-task'>
           <strong className='title'>Concluídas:</strong>
-          <span className='amount-task'>10/20</span>
+          <span className='amount-task'>{totalTaskChecked}/{todos.length}</span>
         </div>
 
         <div className='container-tasks'>
-          {listTasks.length <= 0 ? (
-            <EmptyContainer />
-          ) : null}
+          <Task />
         </div>
       </div>
     </div>
   )
+}
 
+export const TodoApp = () => {
+  return (
+    <TodoProvider>
+      <App />
+    </TodoProvider>
+  )
 }
