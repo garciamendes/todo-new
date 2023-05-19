@@ -2,11 +2,11 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 
 // Local
-import './static/styles/global.css'
-import { App } from './App.tsx'
+import './assets/styles/global.css'
+import { TodoApp } from './App'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    <TodoApp />
   </React.StrictMode>,
 )
